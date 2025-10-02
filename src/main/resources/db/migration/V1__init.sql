@@ -1,0 +1,25 @@
+-- V1__init.sql
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  full_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS rooms (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  number VARCHAR(50) NOT NULL,
+  type VARCHAR(100),
+  price DOUBLE,
+  available BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS reservations (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  room_id BIGINT NOT NULL,
+  check_in DATE,
+  check_out DATE,
+  CONSTRAINT fk_res_user FOREIGN KEY (user_id) REFERENCES users(id),
+  CONSTRAINT fk_res_room FOREIGN KEY (room_id) REFERENCES rooms(id)
+);

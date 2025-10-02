@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Hotel Reservas API
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/users:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created
+  /api/rooms:
+    get:
+      summary: List rooms
+      responses:
+        '200':
+          description: OK
+  /api/reservations:
+    get:
+      summary: List reservations
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        fullName:
+          type: string
